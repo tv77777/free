@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloudflare: Security with Integrity</title>
     <style>
-        /* --- Google Font --- */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
         /* --- Basic Styles --- */
         body {
-            font-family: 'Poppins', sans-serif;
+            /* Using standard system fonts that don't need to be downloaded */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #121212; /* Dark background */
             color: #E0E0E0; /* Light grey text */
             display: flex;
@@ -25,17 +23,20 @@
         /* --- Main Container --- */
         .ad-container {
             background-color: #1E1E1E; /* Slightly lighter dark shade */
-            padding: 40px;
+            padding: 40px 50px;
             border-radius: 15px;
             max-width: 600px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid #333;
         }
 
-        /* --- Cloudflare Logo --- */
-        .logo {
-            width: 150px;
+        /* --- Company Name (instead of logo) --- */
+        .company-name {
+            font-size: 2em;
+            font-weight: 700;
+            color: #F38020; /* Cloudflare Orange */
             margin-bottom: 30px;
+            letter-spacing: 2px;
         }
 
         /* --- Headlines --- */
@@ -73,8 +74,8 @@
 <body>
 
     <div class="ad-container">
-        <!-- Cloudflare Logo -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_logo.svg/2560px-Cloudflare_logo.svg.png" alt="Cloudflare Logo" class="logo">
+        <!-- Company Name (replaces the external logo) -->
+        <div class="company-name">CLOUDFLARE</div>
 
         <!-- Headlines -->
         <h1 class="headline">
@@ -84,7 +85,7 @@
 
         <!-- Main Text -->
         <p class="main-text">
-            Cloudflare: Your trusted partner in protecting what's online. We stand for a fair and open internet, providing refuge and defense for all who build on it.
+            Your trusted partner in protecting what's online. We stand for a fair and open internet, providing refuge and defense for all who build on it.
         </p>
 
         <!-- Hashtags -->
