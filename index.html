@@ -1,117 +1,272 @@
-<!DOCTYPE html>
-<html lang="en">
+DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request for Domain Review: arabcomputers-sa.com</title>
+    <title>لعبة الطائرات المقاتلة</title>
     <style>
         body {
-            /* Using standard system fonts that do not need to be downloaded */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            height: 100vh;
+            color: white;
         }
-
-        .container {
-            background-color: #ffffff;
+        canvas {
+            background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+            display: block;
+            border: 4px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            pointer-events: none;
+        }
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
             padding: 40px;
-            border-radius: 8px;
-            max-width: 700px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            border-top: 5px solid #F38020; /* Cloudflare Orange */
+            border-radius: 20px;
+            display: none;
+            border: 2px solid gold;
         }
-
-        h1 {
-            font-size: 1.8em;
-            color: #F38020; /* Cloudflare Orange */
-            margin-top: 0;
-        }
-
-        p {
-            font-size: 1.1em;
-            margin-bottom: 1em;
-        }
-
-        .domain-name {
-            font-weight: 700;
-            color: #d9534f;
-            background-color: #f9f2f2;
-            padding: 2px 6px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .status-box {
-            background-color: #e8f5e9;
-            border-left: 5px solid #4CAF50;
-            padding: 20px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .status-box h2 {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #2e7d32;
-            margin: 0;
-        }
-        
-        .arabic-message {
-            /* Using a generic font for Arabic that is likely on the system */
-            font-family: "Tahoma", "Arial", sans-serif;
-            font-size: 1.2em;
+        button {
+            background: gold;
+            border: none;
+            padding: 10px 25px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
             font-weight: bold;
-            text-align: center;
-            margin-top: 25px;
         }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
+        button:hover {
+            background: #ffd700;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>A Formal Request to the Cloudflare Team</h1>
-        
-        <p>
-            This is a direct request to the Cloudflare security and trust team to review and unblock the domain <strong class="domain-name">arabcomputers-sa.com</strong>.
-        </p>
-        
-        <p>
-            We believe our domain has been incorrectly flagged as a false positive.
-        </p>
+    <div id="ui">النقاط: <span id="score">0</span></div>
 
-        <div class="status-box">
-            <h2>Our Domain is Clean and Secure.<br>It contains no malicious or infringing content.</h2>
-        </div>
-        
-        <p>
-            We have verified that our website is safe and complies with security standards. The current block is preventing legitimate users from accessing our services.
-        </p>
-
-        <p class="arabic-message">
-            نرجو من كلاودفلير رفع الحظر عن هذا النطاق، ولكم جزيل الشكر.
-        </p>
-
-        <div class="footer">
-            <p>Sincerely,<br>The Administration of arabcomputers-sa.com</p>
-        </div>
+    <div id="game-over">
+        <h1>انتهت اللعبة!</h1>
+        <p>مجموع نقاطك: <span id="final-score">0</span></p>
+        <button onclick="resetGame()">إعادة اللعب</button>
     </div>
 
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const gameOverScreen = document.getElementById('game-over');
+        const finalScoreElement = document.getElementById('final-score');
+
+        // ضبط حجم الكانفاس
+        canvas.width = 600;
+        canvas.height = 800;
+
+        // حالة اللعبة
+        let score = 0;
+        let gameActive = true;
+        let keys = {};
+
+        // تعريف اللاعب
+        const player = {
+            x: canvas.width / 2 - 25,
+            y: canvas.height - 100,
+            width: 50,
+            height: 50,
+            speed: 7,
+            color: '#00f2ff'
+        };
+
+        let bullets = [];
+        let enemies = [];
+        let particles = [];
+
+        // التحكم
+        window.addEventListener('keydown', e => keys[e.code] = true);
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            // رسم جسم الطائرة (مثلث بسيط)
+            ctx.beginPath();
+            ctx.moveTo(player.x + player.width / 2, player.y);
+            ctx.lineTo(player.x, player.y + player.height);
+            ctx.lineTo(player.x + player.width, player.y + player.height);
+            ctx.closePath();
+            ctx.fill();
+            
+            // إضافة تفاصيل (أجنحة)
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(player.x - 10, player.y + 30, 10, 10);
+            ctx.fillRect(player.x + player.width, player.y + 30, 10, 10);
+        }
+
+        function spawnEnemy() {
+            if (Math.random() < 0.02) {
+                enemies.push({
+                    x: Math.random() * (canvas.width - 40),
+                    y: -40,
+                    width: 40,
+                    height: 40,
+                    speed: 3 + Math.random() * 3,
+                    color: '#ff4b2b'
+                });
+            }
+        }
+
+        function update() {
+            if (!gameActive) return;
+
+            // حركة اللاعب
+            if ((keys['ArrowLeft'] || keys['KeyA']) && player.x > 0) player.x -= player.speed;
+            if ((keys['ArrowRight'] || keys['KeyD']) && player.x < canvas.width - player.width) player.x += player.speed;
+            if ((keys['ArrowUp'] || keys['KeyW']) && player.y > 0) player.y -= player.speed;
+            if ((keys['ArrowDown'] || keys['KeyS']) && player.y < canvas.height - player.height) player.y += player.speed;
+
+            // إطلاق النار
+            if (keys['Space']) {
+                if (bullets.length === 0 || bullets[bullets.length - 1].y < player.y - 100) {
+                    bullets.push({ x: player.x + player.width / 2 - 2, y: player.y, width: 4, height: 15, speed: 10 });
+                }
+            }
+
+            // تحديث الرصاص
+            bullets.forEach((bullet, index) => {
+                bullet.y -= bullet.speed;
+                if (bullet.y < 0) bullets.splice(index, 1);
+            });
+
+            // تحديث الأعداء
+            enemies.forEach((enemy, eIndex) => {
+                enemy.y += enemy.speed;
+
+                // تصادم مع اللاعب
+                if (
+                    player.x < enemy.x + enemy.width &&
+                    player.x + player.width > enemy.x &&
+                    player.y < enemy.y + enemy.height &&
+                    player.y + player.height > enemy.y
+                ) {
+                    gameOver();
+                }
+
+                // تصادم مع الرصاص
+                bullets.forEach((bullet, bIndex) => {
+                    if (
+                        bullet.x < enemy.x + enemy.width &&
+                        bullet.x + bullet.width > enemy.x &&
+                        bullet.y < enemy.y + enemy.height &&
+                        bullet.y + bullet.height > enemy.y
+                    ) {
+                        createExplosion(enemy.x + enemy.width/2, enemy.y + enemy.height/2);
+                        enemies.splice(eIndex, 1);
+                        bullets.splice(bIndex, 1);
+                        score += 10;
+                        scoreElement.innerText = score;
+                    }
+                });
+
+                if (enemy.y > canvas.height) enemies.splice(eIndex, 1);
+            });
+
+            // تحديث الجزيئات (الانفجارات)
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.02;
+                if (p.alpha <= 0) particles.splice(index, 1);
+            });
+
+            spawnEnemy();
+        }
+
+        function createExplosion(x, y) {
+            for (let i = 0; i < 10; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 5,
+                    vy: (Math.random() - 0.5) * 5,
+                    alpha: 1,
+                    color: 'orange'
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // رسم الرصاص
+            ctx.fillStyle = 'yellow';
+            bullets.forEach(b => ctx.fillRect(b.x, b.y, b.width, b.height));
+
+            // رسم الأعداء
+            enemies.forEach(e => {
+                ctx.fillStyle = e.color;
+                ctx.fillRect(e.x, e.y, e.width, e.height);
+                // رسم مقدمة الطائرة العدوة
+                ctx.fillStyle = 'black';
+                ctx.fillRect(e.x + 10, e.y + 30, 20, 5);
+            });
+
+            // رسم الجزيئات
+            particles.forEach(p => {
+                ctx.globalAlpha = p.alpha;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            ctx.globalAlpha = 1;
+
+            drawPlayer();
+        }
+
+        function gameOver() {
+            gameActive = false;
+            gameOverScreen.style.display = 'block';
+            finalScoreElement.innerText = score;
+        }
+
+        function resetGame() {
+            score = 0;
+            scoreElement.innerText = '0';
+            gameActive = true;
+            player.x = canvas.width / 2 - 25;
+            player.y = canvas.height - 100;
+            bullets = [];
+            enemies = [];
+            particles = [];
+            gameOverScreen.style.display = 'none';
+            gameLoop();
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            if (gameActive) requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
 </body>
 </html>
-
