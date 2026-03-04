@@ -1,10 +1,14 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لعبة الطائرات المقاتلة</title>
     <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
         body {
             margin: 0;
             padding: 0;
@@ -17,18 +21,29 @@ DOCTYPE html>
             height: 100vh;
             color: white;
         }
-        canvas {
-            background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
-            display: block;
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            max-height: 800px;
             border: 4px solid #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+        }
+        canvas {
+            background: linear-gradient(to bottom, #000428, #004e92);
+            display: block;
+            width: 100%;
+            height: 100%;
         }
         #ui {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 10px;
+            right: 20px;
             font-size: 24px;
-            pointer-events: none;
+            color: #00f2ff;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 10;
         }
         #game-over {
             position: absolute;
@@ -36,77 +51,123 @@ DOCTYPE html>
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 40px;
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
             display: none;
-            border: 2px solid gold;
+            border: 2px solid #00f2ff;
+            z-index: 20;
+            width: 80%;
+        }
+        #start-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #00f2ff;
+            z-index: 20;
+            width: 80%;
         }
         button {
-            background: gold;
+            background: #00f2ff;
             border: none;
-            padding: 10px 25px;
-            font-size: 20px;
+            padding: 12px 30px;
+            font-size: 18px;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
             font-weight: bold;
+            color: #000;
+            transition: 0.3s;
         }
         button:hover {
-            background: #ffd700;
-            transform: scale(1.05);
+            background: #fff;
+            transform: scale(1.1);
+        }
+        .controls-info {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div id="ui">النقاط: <span id="score">0</span></div>
+    <div id="game-container">
+        <div id="ui">النقاط: <span id="score">0</span></div>
 
-    <div id="game-over">
-        <h1>انتهت اللعبة!</h1>
-        <p>مجموع نقاطك: <span id="final-score">0</span></p>
-        <button onclick="resetGame()">إعادة اللعب</button>
+        <div id="start-screen">
+            <h1>لعبة الطائرات</h1>
+            <p>استخدم الأسهم للتحرك والمسافة للإطلاق</p>
+            <button onclick="startGame()">ابدأ اللعب</button>
+            <div class="controls-info">أو استخدم W, A, S, D</div>
+        </div>
+
+        <div id="game-over">
+            <h1>انتهت اللعبة!</h1>
+            <p>مجموع نقاطك: <span id="final-score">0</span></p>
+            <button onclick="resetGame()">إعادة اللعب</button>
+        </div>
+
+        <canvas id="gameCanvas"></canvas>
     </div>
-
-    <canvas id="gameCanvas"></canvas>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreElement = document.getElementById('score');
         const gameOverScreen = document.getElementById('game-over');
+        const startScreen = document.getElementById('start-screen');
         const finalScoreElement = document.getElementById('final-score');
 
-        // ضبط حجم الكانفاس
-        canvas.width = 600;
-        canvas.height = 800;
+        // ضبط الحجم الحقيقي للكانفاس
+        function resize() {
+            canvas.width = 600;
+            canvas.height = 800;
+        }
+        resize();
 
-        // حالة اللعبة
         let score = 0;
-        let gameActive = true;
+        let gameActive = false;
         let keys = {};
+        let player, bullets, enemies, particles;
 
-        // تعريف اللاعب
-        const player = {
-            x: canvas.width / 2 - 25,
-            y: canvas.height - 100,
-            width: 50,
-            height: 50,
-            speed: 7,
-            color: '#00f2ff'
-        };
+        function initGame() {
+            player = {
+                x: canvas.width / 2 - 25,
+                y: canvas.height - 100,
+                width: 50,
+                height: 50,
+                speed: 8,
+                color: '#00f2ff'
+            };
+            bullets = [];
+            enemies = [];
+            particles = [];
+            score = 0;
+            scoreElement.innerText = '0';
+        }
 
-        let bullets = [];
-        let enemies = [];
-        let particles = [];
-
-        // التحكم
         window.addEventListener('keydown', e => keys[e.code] = true);
         window.addEventListener('keyup', e => keys[e.code] = false);
 
+        function startGame() {
+            startScreen.style.display = 'none';
+            initGame();
+            gameActive = true;
+            gameLoop();
+        }
+
         function drawPlayer() {
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = player.color;
             ctx.fillStyle = player.color;
-            // رسم جسم الطائرة (مثلث بسيط)
+            
+            // جسم الطائرة
             ctx.beginPath();
             ctx.moveTo(player.x + player.width / 2, player.y);
             ctx.lineTo(player.x, player.y + player.height);
@@ -114,21 +175,22 @@ DOCTYPE html>
             ctx.closePath();
             ctx.fill();
             
-            // إضافة تفاصيل (أجنحة)
+            // أجنحة
             ctx.fillStyle = '#fff';
             ctx.fillRect(player.x - 10, player.y + 30, 10, 10);
             ctx.fillRect(player.x + player.width, player.y + 30, 10, 10);
+            ctx.shadowBlur = 0;
         }
 
         function spawnEnemy() {
-            if (Math.random() < 0.02) {
+            if (Math.random() < 0.03) {
                 enemies.push({
                     x: Math.random() * (canvas.width - 40),
                     y: -40,
                     width: 40,
                     height: 40,
-                    speed: 3 + Math.random() * 3,
-                    color: '#ff4b2b'
+                    speed: 3 + (score / 100), // تزداد السرعة مع النقاط
+                    color: '#ff3333'
                 });
             }
         }
@@ -142,24 +204,21 @@ DOCTYPE html>
             if ((keys['ArrowUp'] || keys['KeyW']) && player.y > 0) player.y -= player.speed;
             if ((keys['ArrowDown'] || keys['KeyS']) && player.y < canvas.height - player.height) player.y += player.speed;
 
-            // إطلاق النار
+            // إطلاق النار (تلقائي أو بالضغط)
             if (keys['Space']) {
-                if (bullets.length === 0 || bullets[bullets.length - 1].y < player.y - 100) {
-                    bullets.push({ x: player.x + player.width / 2 - 2, y: player.y, width: 4, height: 15, speed: 10 });
+                if (bullets.length === 0 || bullets[bullets.length - 1].y < player.y - 120) {
+                    bullets.push({ x: player.x + player.width / 2 - 2, y: player.y, width: 4, height: 15, speed: 12 });
                 }
             }
 
-            // تحديث الرصاص
             bullets.forEach((bullet, index) => {
                 bullet.y -= bullet.speed;
                 if (bullet.y < 0) bullets.splice(index, 1);
             });
 
-            // تحديث الأعداء
             enemies.forEach((enemy, eIndex) => {
                 enemy.y += enemy.speed;
 
-                // تصادم مع اللاعب
                 if (
                     player.x < enemy.x + enemy.width &&
                     player.x + player.width > enemy.x &&
@@ -169,7 +228,6 @@ DOCTYPE html>
                     gameOver();
                 }
 
-                // تصادم مع الرصاص
                 bullets.forEach((bullet, bIndex) => {
                     if (
                         bullet.x < enemy.x + enemy.width &&
@@ -188,7 +246,6 @@ DOCTYPE html>
                 if (enemy.y > canvas.height) enemies.splice(eIndex, 1);
             });
 
-            // تحديث الجزيئات (الانفجارات)
             particles.forEach((p, index) => {
                 p.x += p.vx;
                 p.y += p.vy;
@@ -200,14 +257,14 @@ DOCTYPE html>
         }
 
         function createExplosion(x, y) {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 12; i++) {
                 particles.push({
                     x: x,
                     y: y,
-                    vx: (Math.random() - 0.5) * 5,
-                    vy: (Math.random() - 0.5) * 5,
+                    vx: (Math.random() - 0.5) * 6,
+                    vy: (Math.random() - 0.5) * 6,
                     alpha: 1,
-                    color: 'orange'
+                    color: i % 2 === 0 ? '#ffcc00' : '#ff3300'
                 });
             }
         }
@@ -215,20 +272,24 @@ DOCTYPE html>
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // رسم الرصاص
-            ctx.fillStyle = 'yellow';
-            bullets.forEach(b => ctx.fillRect(b.x, b.y, b.width, b.height));
+            // خلفية نجوم بسيطة
+            ctx.fillStyle = '#fff';
+            for(let i=0; i<5; i++) {
+                ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, 2, 2);
+            }
 
-            // رسم الأعداء
+            bullets.forEach(b => {
+                ctx.fillStyle = '#00f2ff';
+                ctx.fillRect(b.x, b.y, b.width, b.height);
+            });
+
             enemies.forEach(e => {
                 ctx.fillStyle = e.color;
                 ctx.fillRect(e.x, e.y, e.width, e.height);
-                // رسم مقدمة الطائرة العدوة
-                ctx.fillStyle = 'black';
-                ctx.fillRect(e.x + 10, e.y + 30, 20, 5);
+                ctx.fillStyle = '#000';
+                ctx.fillRect(e.x + 5, e.y + 10, 30, 5);
             });
 
-            // رسم الجزيئات
             particles.forEach(p => {
                 ctx.globalAlpha = p.alpha;
                 ctx.fillStyle = p.color;
@@ -248,16 +309,8 @@ DOCTYPE html>
         }
 
         function resetGame() {
-            score = 0;
-            scoreElement.innerText = '0';
-            gameActive = true;
-            player.x = canvas.width / 2 - 25;
-            player.y = canvas.height - 100;
-            bullets = [];
-            enemies = [];
-            particles = [];
             gameOverScreen.style.display = 'none';
-            gameLoop();
+            startGame();
         }
 
         function gameLoop() {
@@ -265,8 +318,6 @@ DOCTYPE html>
             draw();
             if (gameActive) requestAnimationFrame(gameLoop);
         }
-
-        gameLoop();
     </script>
 </body>
 </html>
