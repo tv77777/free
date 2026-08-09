@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معلم دهانات وديكورات وايبوكسي الرياض | معلم دهانات وديكورات وإيبوكسي الرياض</title>
-
+    <title>معلم دهانات وديكورات وايبوكسي الرياض</title>
+    
     <!-- SEO & Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9178907045493989" crossorigin="anonymous"></script>
-
+    
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -15,9 +15,7 @@
     <style>
         :root {
             --primary: #0B1A2E;
-            --primary-light: #13294B;
             --gold: #C9A84C;
-            --gold-hover: #B8923A;
             --gold-light: #E8D5A3;
             --gold-gradient: linear-gradient(135deg, #C9A84C, #B8923A);
             --bg-light: #F9F9F7;
@@ -35,7 +33,6 @@
             --transition: all 0.3s ease;
         }
 
-        /* Global Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { 
@@ -50,7 +47,6 @@
         img { max-width: 100%; display: block; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        /* Helper Classes */
         .py-section { padding: 80px 0; }
         .text-center { text-align: center; }
         .btn { 
@@ -63,13 +59,12 @@
         .btn-outline { border: 2px solid var(--gold); color: var(--primary); background: transparent; }
         .btn-outline:hover { background: var(--gold-gradient); color: #fff; border-color: transparent; }
 
-        /* Section Headers */
         .section-header { margin-bottom: 50px; }
         .section-label { color: var(--gold); font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .section-header h2 { font-size: 32px; font-weight: 900; color: var(--primary); margin-bottom: 15px; }
         .section-subtitle { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
 
-        /* Header & Nav */
+        /* Header & Nav - same as before, kept compact */
         .top-bar { background: var(--primary); color: rgba(255,255,255,0.8); font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .top-bar .contact-info { display: flex; gap: 20px; }
@@ -85,12 +80,11 @@
         .nav-list { display: flex; gap: 5px; }
         .nav-list a { padding: 8px 15px; font-weight: 600; font-size: 14px; border-radius: 50px; }
         .nav-list a:hover, .nav-list a.active { background: var(--gold); color: #fff; }
-
         .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 5px; }
         .hamburger span { display: block; width: 25px; height: 3px; background: var(--primary); margin: 5px 0; border-radius: 3px; transition: 0.3s; }
 
-        /* Hero Section */
-        .hero { background: var(--primary); color: #fff; padding: 60px 0; overflow: hidden; position: relative; }
+        /* Hero Section - same */
+        .hero { background: var(--primary); color: #fff; padding: 60px 0; }
         .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .hero-badge { background: rgba(201,168,76,0.15); color: var(--gold-light); padding: 5px 15px; border-radius: 50px; font-size: 13px; font-weight: 600; border: 1px solid rgba(201,168,76,0.3); margin-bottom: 20px; display: inline-block; }
         .hero h1 { font-size: 40px; font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
@@ -98,9 +92,9 @@
         .hero p { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 30px; max-width: 500px; }
         .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
         .hero-img { border-radius: var(--radius-lg); overflow: hidden; border: 3px solid rgba(201,168,76,0.2); box-shadow: var(--shadow-lg); }
-        .hero-img img { width: 100%; height: auto; object-fit: cover; aspect-ratio: 4/3; }
+        .hero-img img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
 
-        /* About Section */
+        /* About - same */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .about-text h3 { font-size: 28px; font-weight: 900; margin-bottom: 20px; color: var(--primary); }
         .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
@@ -108,7 +102,7 @@
         .about-features i { color: var(--gold); background: rgba(201,168,76,0.1); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .about-img img { border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
 
-        /* Services Section */
+        /* Services - same */
         .services { background: var(--bg-light); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .service-card { background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: var(--transition); }
@@ -122,21 +116,56 @@
         .service-tags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .tag { font-size: 11px; background: var(--bg-light); padding: 3px 10px; border-radius: 50px; color: var(--text-muted); font-weight: 600; }
 
-        /* Portfolio & Latest Works */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .portfolio-item { position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 1; cursor: pointer; }
-        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,26,46,0.9), transparent); display: flex; align-items: flex-end; padding: 20px; color: #fff; opacity: 0; transition: 0.3s; }
-        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        /* ===== PORTFOLIO GALLERY ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .portfolio-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            background: #f0f0f0;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11,26,46,0.85), transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .portfolio-overlay h4 {
+            font-size: 18px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
 
-        /* Stats Section */
+        /* Stats - same */
         .stats { background: var(--primary); color: #fff; padding: 60px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 36px; font-weight: 900; color: var(--gold-light); }
         .stat-item p { font-size: 15px; opacity: 0.8; }
 
-        /* Testimonials */
+        /* Testimonials - same */
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .testimonial-card { background: var(--bg-light); padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--border); }
         .stars { color: #F5B342; margin-bottom: 15px; font-size: 14px; }
@@ -144,20 +173,19 @@
         .author h5 { font-weight: 800; color: var(--primary); }
         .author span { font-size: 12px; color: var(--gold); }
 
-        /* Contact Section */
+        /* Contact - same */
         .contact { background: var(--bg-light); }
         .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
         .contact-info-list { display: grid; gap: 15px; }
         .info-card { background: #fff; padding: 20px; border-radius: var(--radius-md); display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-sm); border-right: 4px solid var(--gold); }
         .info-card i { width: 45px; height: 45px; background: var(--gold-gradient); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-        
         .contact-form { background: #fff; padding: 35px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
         .form-group { margin-bottom: 15px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .form-control { width: 100%; padding: 12px 18px; border: 2px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; transition: 0.3s; background: var(--bg-light); }
         .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
 
-        /* Footer */
+        /* Footer - same */
         footer { background: var(--primary); color: rgba(255,255,255,0.7); padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: #fff; margin-bottom: 20px; font-weight: 700; position: relative; padding-bottom: 10px; }
@@ -169,7 +197,6 @@
         .social-links a:hover { background: var(--gold); color: var(--primary); }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 13px; }
 
-        /* Floating WhatsApp */
         .whatsapp-btn { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 25px rgba(37,211,102,0.3); z-index: 1000; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.4); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(1); } }
 
@@ -179,6 +206,7 @@
             .hero-btns, .about-features { justify-content: center; }
             .hero-img, .about-img { max-width: 500px; margin: 0 auto; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
         }
         @media (max-width: 768px) {
             .top-bar { display: none; }
@@ -189,6 +217,7 @@
             .footer-grid { grid-template-columns: 1fr; }
             .section-header h2 { font-size: 26px; }
             .hero h1 { font-size: 32px; }
+            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
         }
     </style>
 </head>
@@ -233,7 +262,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="container hero-grid">
             <div class="hero-content">
@@ -251,7 +280,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section class="about py-section" id="about">
         <div class="container about-grid">
             <div class="about-text">
@@ -271,7 +300,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section class="services py-section" id="services">
         <div class="container">
             <div class="section-header text-center">
@@ -280,22 +309,18 @@
                 <p class="section-subtitle">نقدم باقة متنوعة من الخدمات الاحترافية التي تلبي تطلعاتك</p>
             </div>
             <div class="services-grid">
-                <!-- Service 1 -->
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://i.postimg.cc/43gN1Zbp/IMG-20260809-WA0071.jpg" alt="دهانات داخلية">
+                        <img src="https://i.postimg.cc/prp2ddxj/IMG-20260809-WA0038.jpg" alt="دهانات داخلية">
                         <span class="discount">خصم 15%</span>
                     </div>
                     <div class="service-body">
                         <h4>دهانات داخلية</h4>
                         <p>أعمال دهانات داخلية احترافية تضيف لمسة راقية لكل مساحة باستخدام أفضل الدهانات الحديثة.</p>
-                        <div class="service-tags">
-                            <span class="tag">جودة عالية</span><span class="tag">ألوان عصرية</span>
-                        </div>
+                        <div class="service-tags"><span class="tag">جودة عالية</span><span class="tag">ألوان عصرية</span></div>
                         <a href="tel:0558867206" class="btn btn-outline">اطلب الآن</a>
                     </div>
                 </div>
-                <!-- Service 2 -->
                 <div class="service-card">
                     <div class="service-img">
                         <img src="https://i.postimg.cc/zXFdfFtj/IMG-20260809-WA0089.jpg" alt="دهانات خارجية">
@@ -304,13 +329,10 @@
                     <div class="service-body">
                         <h4>دهانات خارجية</h4>
                         <p>طلاء واجهات بمواد فائقة الجودة تتحمل الظروف المناخية القاسية وتدوم طويلاً.</p>
-                        <div class="service-tags">
-                            <span class="tag">مقاومة للحرارة</span><span class="tag">ضمان 5 سنوات</span>
-                        </div>
+                        <div class="service-tags"><span class="tag">مقاومة للحرارة</span><span class="tag">ضمان 5 سنوات</span></div>
                         <a href="tel:0558867206" class="btn btn-outline">اطلب الآن</a>
                     </div>
                 </div>
-                <!-- Service 3 -->
                 <div class="service-card">
                     <div class="service-img">
                         <img src="https://i.postimg.cc/rpfXtLf3/IMG-20260809-WA0055.jpg" alt="أرضيات إيبوكسي">
@@ -319,9 +341,7 @@
                     <div class="service-body">
                         <h4>أرضيات إيبوكسي</h4>
                         <p>تنفيذ أرضيات إيبوكسي عصرية تجمع بين القوة والجمال للمنازل والمواقف والمستودعات.</p>
-                        <div class="service-tags">
-                            <span class="tag">قوة تحمل</span><span class="tag">سهولة تنظيف</span>
-                        </div>
+                        <div class="service-tags"><span class="tag">قوة تحمل</span><span class="tag">سهولة تنظيف</span></div>
                         <a href="tel:0558867206" class="btn btn-outline">اطلب الآن</a>
                     </div>
                 </div>
@@ -329,37 +349,23 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- ===== PORTFOLIO SECTION - ALL IMAGES ===== -->
     <section class="portfolio py-section" id="portfolio">
         <div class="container">
             <div class="section-header text-center">
                 <span class="section-label">معرض الأعمال</span>
                 <h2>أعمالنا تتحدث عنا</h2>
+                <p class="section-subtitle">نفخر بعرض جميع مشاريعنا التي تعكس جودة عملنا وإتقاننا</p>
             </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://i.postimg.cc/prp2ddxj/IMG-20260809-WA0038.jpg" alt="مشروع">
-                    <div class="portfolio-overlay"><h4>دهانات داخلية فاخرة</h4></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://i.postimg.cc/yNy9mL97/IMG-20260809-WA0051.jpg" alt="مشروع">
-                    <div class="portfolio-overlay"><h4>تشطيب احترافي</h4></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://i.postimg.cc/zXFdfFtj/IMG-20260809-WA0089.jpg" alt="مشروع">
-                    <div class="portfolio-overlay"><h4>واجهات خارجية</h4></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://i.postimg.cc/0NVRJqVf/IMG-20260809-WA0013.jpg" alt="مشروع">
-                    <div class="portfolio-overlay"><h4>أرضيات إيبوكسي</h4></div>
-                </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- سيتم إنشاء العناصر بواسطة JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats -->
     <section class="stats">
-        <div class="container stats-grid text-center">
+        <div class="container stats-grid">
             <div class="stat-item"><h3>+500</h3><p>مشروع منجز</p></div>
             <div class="stat-item"><h3>+5</h3><p>سنوات خبرة</p></div>
             <div class="stat-item"><h3>100%</h3><p>رضا العملاء</p></div>
@@ -367,7 +373,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials -->
     <section class="testimonials py-section" id="testimonials">
         <div class="container">
             <div class="section-header text-center">
@@ -389,7 +395,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section class="contact py-section" id="contact">
         <div class="container">
             <div class="section-header text-center">
@@ -465,19 +471,137 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
+    <!-- WhatsApp Floating -->
     <a href="https://wa.me/966558867206" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        // Mobile Menu Toggle
+        // ===== ALL IMAGE URLs (collected from your previous lists) =====
+        const allImages = [
+            // دهانات داخلية
+            "https://i.postimg.cc/43gN1Zbp/IMG-20260809-WA0071.jpg",
+            "https://i.postimg.cc/prp2ddxj/IMG-20260809-WA0038.jpg",
+            "https://i.postimg.cc/hjCDgmFs/IMG-20260809-WA0039.jpg",
+            "https://i.postimg.cc/brszvv8t/IMG-20260809-WA0040.jpg",
+            "https://i.postimg.cc/Qt68s7LS/IMG-20260809-WA0041.jpg",
+            "https://i.postimg.cc/NMNsYXh8/IMG-20260809-WA0042.jpg",
+            "https://i.postimg.cc/85ypDv8m/IMG-20260809-WA0043.jpg",
+            "https://i.postimg.cc/HxSYHMGt/IMG-20260809-WA0044.jpg",
+            "https://i.postimg.cc/wvWqHNKX/IMG-20260809-WA0045.jpg",
+            "https://i.postimg.cc/nzdFZm8B/IMG-20260809-WA0046.jpg",
+            "https://i.postimg.cc/sXnjyWFv/IMG-20260809-WA0047.jpg",
+            "https://i.postimg.cc/63HWwZsG/IMG-20260809-WA0048.jpg",
+            "https://i.postimg.cc/RFPS9trf/IMG-20260809-WA0049.jpg",
+            "https://i.postimg.cc/fLHzZd4w/IMG-20260809-WA0050.jpg",
+            "https://i.postimg.cc/TwkdGb8T/IMG-20260809-WA0051.jpg",
+            "https://i.postimg.cc/Px6XhDGh/IMG-20260809-WA0052.jpg",
+            "https://i.postimg.cc/xCjfWRZq/IMG-20260809-WA0053.jpg",
+            "https://i.postimg.cc/4d4fr50J/IMG-20260809-WA0054.jpg",
+            "https://i.postimg.cc/d1QszBfw/IMG-20260809-WA0055.jpg",
+            "https://i.postimg.cc/KzcGdNWh/IMG-20260809-WA0056.jpg",
+            "https://i.postimg.cc/C1MhWN2y/IMG-20260809-WA0058.jpg",
+            "https://i.postimg.cc/ZRYb1cMw/IMG-20260809-WA0059.jpg",
+            "https://i.postimg.cc/rmyVvJPP/IMG-20260809-WA0060.jpg",
+            "https://i.postimg.cc/FRFr2ZBW/IMG-20260809-WA0061.jpg",
+            "https://i.postimg.cc/zBDz9jc0/IMG-20260809-WA0062.jpg",
+            "https://i.postimg.cc/TPJ27SC7/IMG-20260809-WA0063.jpg",
+            "https://i.postimg.cc/wBQxfP0r/IMG-20260809-WA0064.jpg",
+            "https://i.postimg.cc/9fYX8SJ1/IMG-20260809-WA0065.jpg",
+            "https://i.postimg.cc/zfFDtM0x/IMG-20260809-WA0066.jpg",
+            "https://i.postimg.cc/BvBZYyMT/IMG-20260809-WA0067.jpg",
+            "https://i.postimg.cc/pdJVG7qD/IMG-20260809-WA0068.jpg",
+            "https://i.postimg.cc/YSz2nVbg/IMG-20260809-WA0069.jpg",
+            "https://i.postimg.cc/ZqxY7gVN/IMG-20260809-WA0070.jpg",
+            "https://i.postimg.cc/nLJc1ZY4/IMG-20260809-WA0072.jpg",
+            "https://i.postimg.cc/5tVNm1qF/IMG-20260809-WA0073.jpg",
+            "https://i.postimg.cc/pdHXBxYr/IMG-20260809-WA0074.jpg",
+            "https://i.postimg.cc/tgjCzytZ/IMG-20260809-WA0075.jpg",
+            "https://i.postimg.cc/fbNTvZjL/IMG-20260809-WA0076.jpg",
+            "https://i.postimg.cc/GpChjrJd/IMG-20260809-WA0077.jpg",
+            "https://i.postimg.cc/3wTJZ7CH/IMG-20260809-WA0078.jpg",
+            "https://i.postimg.cc/PqjrMhzn/IMG-20260809-WA0079.jpg",
+            "https://i.postimg.cc/Bv0QCscW/IMG-20260809-WA0080.jpg",
+            "https://i.postimg.cc/fRXRXkXD/IMG-20260809-WA0081.jpg",
+            "https://i.postimg.cc/52v2vjvM/IMG-20260809-WA0082.jpg",
+            "https://i.postimg.cc/pL8L8y8H/IMG-20260809-WA0083.jpg",
+            "https://i.postimg.cc/NjTjTLTq/IMG-20260809-WA0084.jpg",
+            "https://i.postimg.cc/MpRpRXBL/IMG-20260809-WA0085.jpg",
+            "https://i.postimg.cc/dVdVdDCx/IMG-20260809-WA0086.jpg",
+            "https://i.postimg.cc/6pRpRTZb/IMG-20260809-WA0087.jpg",
+            "https://i.postimg.cc/fRXRXkdF/IMG-20260809-WA0088.jpg",
+            "https://i.postimg.cc/m27r1tCq/IMG-20260809-WA0030.jpg",
+            "https://i.postimg.cc/GhvpTHGZ/IMG-20260809-WA0031.jpg",
+            "https://i.postimg.cc/8PLCfjMx/IMG-20260809-WA0032.jpg",
+            "https://i.postimg.cc/28n5LVhM/IMG-20260809-WA0033.jpg",
+            "https://i.postimg.cc/tCFgnYWK/IMG-20260809-WA0034.jpg",
+            "https://i.postimg.cc/kXW5RBWP/IMG-20260809-WA0035.jpg",
+            "https://i.postimg.cc/9Fyfwryj/IMG-20260809-WA0036.jpg",
+            "https://i.postimg.cc/vH5mxc5F/IMG-20260809-WA0037.jpg",
+            // دهانات خارجية
+            "https://i.postimg.cc/zXFdfFtj/IMG-20260809-WA0089.jpg",
+            "https://i.postimg.cc/y69QMHFD/IMG-20260809-WA0090.jpg",
+            "https://i.postimg.cc/pV8GwHD5/IMG-20260809-WA0091.jpg",
+            "https://i.postimg.cc/7YksDWVx/IMG-20260809-WA0092.jpg",
+            "https://i.postimg.cc/G3Y7WCkB/IMG-20260809-WA0093.jpg",
+            "https://i.postimg.cc/8PSKD0H5/IMG-20260809-WA0094.jpg",
+            "https://i.postimg.cc/kXm19pcg/IMG-20260809-WA0095.jpg",
+            "https://i.postimg.cc/rFkncPJF/IMG-20260809-WA0096.jpg",
+            "https://i.postimg.cc/HsgZHh2L/IMG-20260809-WA0097.jpg",
+            "https://i.postimg.cc/4NgLZS5Y/IMG-20260809-WA0098.jpg",
+            "https://i.postimg.cc/7YksDWVS/IMG-20260809-WA0099.jpg",
+            // إيبوكسي
+            "https://i.postimg.cc/rpfXtLf3/IMG-20260809-WA0055.jpg",
+            "https://i.postimg.cc/0NVRJqVf/IMG-20260809-WA0013.jpg",
+            "https://i.postimg.cc/1zvhNZvM/IMG-20260809-WA0014.jpg",
+            "https://i.postimg.cc/R0SxF0LY/IMG-20260809-WA0015.jpg",
+            "https://i.postimg.cc/DzxkbKx6/IMG-20260809-WA0016.jpg",
+            "https://i.postimg.cc/bvyfJv9g/IMG-20260809-WA0017(1).jpg",
+            "https://i.postimg.cc/HLY1xL94/IMG-20260809-WA0018(1).jpg",
+            "https://i.postimg.cc/Qdkrh717/IMG-20260809-WA0019(1).jpg",
+            "https://i.postimg.cc/Xvj6Jvkd/IMG-20260809-WA0020(1).jpg",
+            "https://i.postimg.cc/8CZQrVZt/IMG-20260809-WA0021.jpg",
+            "https://i.postimg.cc/QM8ZtMJd/IMG-20260809-WA0022(1).jpg",
+            "https://i.postimg.cc/7LHr6Ln2/IMG-20260809-WA0023(1).jpg",
+            "https://i.postimg.cc/W45LJP56/IMG-20260809-WA0024(1).jpg",
+            "https://i.postimg.cc/vmYwBmtm/IMG-20260809-WA0025(1).jpg",
+            "https://i.postimg.cc/TPdvwPJm/IMG-20260809-WA0026(1).jpg",
+            "https://i.postimg.cc/1zm1tzr7/IMG-20260809-WA0027(1).jpg",
+            "https://i.postimg.cc/N0svM0kF/IMG-20260809-WA0028(1).jpg",
+            "https://i.postimg.cc/P5zkTDYZ/IMG-20260809-WA0029(1).jpg",
+            "https://i.postimg.cc/W45LJP9L/IMG-20260809-WA0041.jpg",
+            "https://i.postimg.cc/wBw8sdwS/IMG-20260809-WA0048.jpg",
+            "https://i.postimg.cc/cJFy8NFz/IMG-20260809-WA0053.jpg",
+            "https://i.postimg.cc/GpXws1Mn/IMG-20260809-WA0060.jpg",
+            "https://i.postimg.cc/GpXws1M0/IMG-20260809-WA0061.jpg",
+            "https://i.postimg.cc/KY0Sgy0V/IMG-20260809-WA0062.jpg"
+        ];
+
+        // إزالة التكرارات (في حالة وجودها)
+        const uniqueImages = [...new Set(allImages)];
+
+        // إنشاء عناصر المعرض
+        const grid = document.getElementById('portfolioGrid');
+        uniqueImages.forEach(url => {
+            const item = document.createElement('div');
+            item.className = 'portfolio-item';
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = 'أعمالنا';
+            img.loading = 'lazy'; // تحميل بطيء لتحسين الأداء
+            const overlay = document.createElement('div');
+            overlay.className = 'portfolio-overlay';
+            overlay.innerHTML = '<h4>📍 مشروع منجز</h4>';
+            item.appendChild(img);
+            item.appendChild(overlay);
+            grid.appendChild(item);
+        });
+
+        // ===== باقي السكربتات (القائمة، الفورم، التنقل) =====
         const hamburger = document.getElementById('hamburger');
         const navList = document.getElementById('navList');
         hamburger.addEventListener('click', () => {
             navList.classList.toggle('active');
             hamburger.classList.toggle('active');
         });
-
-        // Close menu on link click
         document.querySelectorAll('.nav-list a').forEach(link => {
             link.addEventListener('click', () => {
                 navList.classList.remove('active');
@@ -485,7 +609,6 @@
             });
         });
 
-        // Active Link on Scroll
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-list a');
         window.addEventListener('scroll', () => {
@@ -504,17 +627,15 @@
             });
         });
 
-        // WhatsApp Form Handling
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const service = document.getElementById('service').value;
             const message = document.getElementById('message').value;
-            
             const text = `مرحباً أبو أنور،%0Aالاسم: ${name}%0Aرقم الهاتف: ${phone}%0Aالخدمة: ${service}%0Aالرسالة: ${message}`;
             window.open(`https://wa.me/966558867206?text=${text}`, '_blank');
         });
     </script>
 </body>
-                        </html>
+    </html>
