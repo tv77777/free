@@ -2,15 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.enjazaty.com/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <priority>1.00</priority>
+    <lastmod>2026-08-25</lastmod>
   </url>
   <url>
-    <loc>https://www.enjazaty.com/#services</loc>
-    <priority>0.80</priority>
+    <loc>https://www.enjazaty.com/about.html</loc>
+    <lastmod>2026-08-25</lastmod>
   </url>
   <url>
-    <loc>https://www.enjazaty.com/#contact</loc>
-    <priority>0.80</priority>
+    <loc>https://www.enjazaty.com/interior-painting.html</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.enjazaty.com/exterior-painting.html</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.enjazaty.com/epoxy-flooring.html</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.enjazaty.com/renovation-finishing.html</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.enjazaty.com/privacy.html</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.enjazaty.com/terms.html</loc>
+    <lastmod>2026-08-25</lastmod>
   </url>
 </urlset>
